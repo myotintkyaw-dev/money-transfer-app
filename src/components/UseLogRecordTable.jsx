@@ -20,11 +20,11 @@ function getTimestampValue(timestamp) {
 }
 
 function getDisplayType(type) {
-  return type === "out" ? "Out" : "In";
+  return type === "out" ? "အထွက်" : "အဝင်";
 }
 
 function getDisplayLocation(location) {
-  return location === "yangon" ? "Yangon" : "Sittwe";
+  return location === "yangon" ? "ရန်ကုန်" : "စစ်တွေ";
 }
 
 function UseLogRecordTable({ useLogs, loading }) {
@@ -70,11 +70,11 @@ function UseLogRecordTable({ useLogs, loading }) {
           <table className="min-w-220 table-fixed divide-y divide-neutral-200 bg-white text-sm">
             <thead className="bg-neutral-50 text-left text-neutral-500">
               <tr>
-                <th className="w-20 px-4 py-3 font-semibold">Date</th>
-                <th className="w-12 px-4 py-3 font-semibold">Type</th>
-                <th className="w-16 px-4 py-3 font-semibold">Location</th>
-                <th className="w-20 px-4 py-3 font-semibold">Amount</th>
-                <th className="w-40 px-4 py-3 font-semibold">Note</th>
+                <th className="w-20 px-4 py-3 font-semibold">ရက်</th>
+                <th className="w-12 px-4 py-3 font-semibold">အဝင်/အထွက်</th>
+                <th className="w-16 px-4 py-3 font-semibold">နေရာ</th>
+                <th className="w-20 px-4 py-3 font-semibold">ငွေပမာဏ</th>
+                <th className="w-40 px-4 py-3 font-semibold">မှတ်ချက်</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-neutral-100">
@@ -85,11 +85,10 @@ function UseLogRecordTable({ useLogs, loading }) {
                   </td>
                   <td className="px-4 py-4 whitespace-nowrap">
                     <span
-                      className={`rounded-md border px-3 py-1 text-xs font-semibold ${
-                        useLog.type === "in"
+                      className={`rounded-md border px-3 py-1 text-xs font-semibold ${useLog.type === "in"
                           ? "border-neutral-300 bg-neutral-100 text-neutral-900"
                           : "border-neutral-200 bg-white text-neutral-600"
-                      }`}
+                        }`}
                     >
                       {getDisplayType(useLog.type)}
                     </span>

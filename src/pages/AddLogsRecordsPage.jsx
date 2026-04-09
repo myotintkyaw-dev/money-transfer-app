@@ -21,7 +21,7 @@ function AddLogsRecordsPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-3xl font-semibold text-neutral-950">Add Logs Records</h1>
+      <h1 className="text-3xl font-semibold text-neutral-950">ငွေစာရင်းများ</h1>
       <FilterBar
         filter={filter}
         customStartDate={customDates.startDate}

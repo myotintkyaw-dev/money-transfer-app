@@ -21,7 +21,7 @@ function UseLogsRecordsPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-3xl font-semibold text-neutral-950">Use Logs Records</h1>
+      <h1 className="text-3xl font-semibold text-neutral-950">အသုံးစရိတ်များ</h1>
       <FilterBar
         filter={filter}
         customStartDate={customDates.startDate}

@@ -47,8 +47,8 @@ function getEditableType(typeValue) {
 }
 
 const transactionTypeOptions = [
-  { value: "send", label: "Send" },
-  { value: "receive", label: "Receive" },
+  { value: "send", label: "အထွက်" },
+  { value: "receive", label: "အဝင်" },
 ];
 
 function TransactionForm({ onSubmit, editingTransaction, onCancel }) {
@@ -94,7 +94,7 @@ function TransactionForm({ onSubmit, editingTransaction, onCancel }) {
       <form className="space-y-4" onSubmit={handleSubmit}>
         <label className="block">
           <span className={formLabelClass}>
-            Date
+            ရက်
           </span>
           <input
             required
@@ -108,7 +108,7 @@ function TransactionForm({ onSubmit, editingTransaction, onCancel }) {
 
         <label className="block">
           <span className={formLabelClass}>
-            Sender
+            ပို့သူ
           </span>
           <input
             required
@@ -122,7 +122,7 @@ function TransactionForm({ onSubmit, editingTransaction, onCancel }) {
 
         <label className="block">
           <span className={formLabelClass}>
-            Receiver
+            လက်ခံသူ
           </span>
           <input
             required
@@ -136,7 +136,7 @@ function TransactionForm({ onSubmit, editingTransaction, onCancel }) {
 
         <label className="block">
           <span className={formLabelClass}>
-            Transaction Type
+            ငွေဝင်/ထွက် အမျိုးအစား
           </span>
           <CustomSelect
             name="type"
@@ -151,7 +151,7 @@ function TransactionForm({ onSubmit, editingTransaction, onCancel }) {
 
         <label className="block">
           <span className={formLabelClass}>
-            Amount
+            ငွေပမာဏ
           </span>
           <input
             required
@@ -167,7 +167,7 @@ function TransactionForm({ onSubmit, editingTransaction, onCancel }) {
 
         <label className="block">
           <span className={formLabelClass}>
-            Commission
+            ငွေလွှဲ/ထုတ်ခ
           </span>
           <input
             required
@@ -183,7 +183,7 @@ function TransactionForm({ onSubmit, editingTransaction, onCancel }) {
 
         <label className="block">
           <span className={formLabelClass}>
-            Note
+            မှတ်ချက်
           </span>
           <textarea
             rows={3}
@@ -216,7 +216,7 @@ function TransactionForm({ onSubmit, editingTransaction, onCancel }) {
             ) : editingTransaction ? (
               "Update transaction"
             ) : (
-              "Add transaction"
+              "ငွေစာရင်းထည့်ပါ"
             )}
           </button>
         </div>

@@ -54,7 +54,7 @@ function InitialAmountForm({ onSubmit, initialAmount }) {
       <form className="space-y-4" onSubmit={handleSubmit}>
         <label className="block">
           <span className={formLabelClass}>
-            Sittwe
+            စစ်တွေ
           </span>
           <input
             required
@@ -70,7 +70,7 @@ function InitialAmountForm({ onSubmit, initialAmount }) {
 
         <label className="block">
           <span className={formLabelClass}>
-            Yangon
+            ရန်ကုန်
           </span>
           <input
             required
@@ -94,9 +94,9 @@ function InitialAmountForm({ onSubmit, initialAmount }) {
               <LoadingSpinner />
             </span>
           ) : initialAmount ? (
-            "Update initial amount"
+            "အရင်းငွေ ပြောင်းလဲပါ"
           ) : (
-            "Set initial amount"
+            "အရင်းငွေ ထည့်ပါ"
           )}
         </button>
       </form>

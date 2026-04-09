@@ -37,6 +37,7 @@ function DashboardPage() {
     customStartDate: customDates.startDate,
     customEndDate: customDates.endDate,
   });
+
   const {
     useLogs,
     error: useLogsError,
@@ -46,6 +47,21 @@ function DashboardPage() {
     customStartDate: customDates.startDate,
     customEndDate: customDates.endDate,
   });
+  const {
+    transactions: allTransactions,
+  } = useTransactions({
+    userId: user?.uid ?? null,
+  });
+  const {
+    initialAmounts: allInitialAmounts,
+  } = useInitialAmounts({
+    userId: user?.uid ?? null,
+  });
+  const {
+    useLogs: allUseLogs,
+  } = useUseLogs({
+    userId: user?.uid ?? null,
+  });
 
   const transactionMetrics = useMemo(
     () => calculateTransactionMetrics(transactions),
@@ -53,36 +69,36 @@ function DashboardPage() {
   );
   const usedAmount = useMemo(() => calculateUsedAmount(useLogs), [useLogs]);
   const initialAmountSummary = useMemo(
-    () => calculateBalanceSummary(initialAmounts, transactions, useLogs),
-    [initialAmounts, transactions, useLogs],
+    () => calculateBalanceSummary(allInitialAmounts, allTransactions, allUseLogs),
+    [allInitialAmounts, allTransactions, allUseLogs],
   );
   const cards = [
     {
-      title: "Commission amount",
+      title: "ငွေလွှဲ/ထုတ်ခ",
       value: formatCurrency(transactionMetrics.commissionAmount),
     },
     {
-      title: "Times count",
+      title: "ငွေလွှဲ/ထုတ် အကြိမ်ရေ",
       value: String(transactionMetrics.timesCount),
     },
     {
-      title: "Transaction amount",
+      title: "ငွေလွှဲ/ထုတ် ပမာဏ",
       value: formatCurrency(transactionMetrics.transactionAmount),
     },
     {
-      title: "Used",
+      title: "အသုံးစရိတ်",
       value: formatCurrency(usedAmount),
     },
     {
-      title: "Sittwe amount",
+      title: "စစ်တွေ ငွေပမာဏ",
       value: formatCurrency(initialAmountSummary.sittweAmount),
     },
     {
-      title: "Yangon amount",
+      title: "ရန်ကုန် ငွေပမာဏ",
       value: formatCurrency(initialAmountSummary.yangonAmount),
     },
     {
-      title: "Initial amount",
+      title: "အရင်းငွေ ပမာဏ",
       value: formatCurrency(initialAmountSummary.initialAmount),
       className: "col-span-2 xl:col-span-2",
     },
@@ -90,7 +106,7 @@ function DashboardPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-3xl font-semibold text-neutral-950">Dashboard</h1>
+      <h1 className="text-3xl font-semibold text-neutral-950">ပင်မစာမျက်နှာ</h1>
       <FilterBar
         filter={filter}
         customStartDate={customDates.startDate}

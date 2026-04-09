@@ -5,10 +5,10 @@ import LoadingSpinner from "./LoadingSpinner";
 
 function getDisplayType(type) {
   if (type === "income" || type === "receive") {
-    return "Receive";
+    return "အဝင်";
   }
 
-  return "Send";
+  return "အထွက်";
 }
 
 function getTimestampValue(timestamp) {
@@ -74,13 +74,13 @@ function RecordTable({ transactions, loading }) {
           <table className="min-w-280 table-fixed divide-y divide-neutral-200 bg-white text-sm">
             <thead className="bg-neutral-50 text-left text-neutral-500">
               <tr>
-                <th className="w-10 px-4 py-3 font-semibold">Date</th>
-                <th className="w-7.5 px-4 py-3 font-semibold">Type</th>
-                <th className="w-20 px-4 py-3 font-semibold">Amount</th>
-                <th className="w-25 px-4 py-3 font-semibold">Commission</th>
-                <th className="w-30 px-4 py-3 font-semibold">Sender</th>
-                <th className="w-30 px-4 py-3 font-semibold">Receiver</th>
-                <th className="w-35 px-4 py-3 font-semibold">Note</th>
+                <th className="w-10 px-4 py-3 font-semibold">ရက်</th>
+                <th className="w-7.5 px-4 py-3 font-semibold">ငွေလွှဲ/ထုတ်</th>
+                <th className="w-20 px-4 py-3 font-semibold">ငွေပမာဏ</th>
+                <th className="w-25 px-4 py-3 font-semibold">ငွေလွှဲထုတ်ခ</th>
+                <th className="w-30 px-4 py-3 font-semibold">ပို့သူ</th>
+                <th className="w-30 px-4 py-3 font-semibold">လက်ခံသူ</th>
+                <th className="w-35 px-4 py-3 font-semibold">မှတ်ချက်</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-neutral-100">

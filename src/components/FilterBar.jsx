@@ -40,7 +40,7 @@ function FilterBar({
                 className="w-full rounded-full bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-700 outline-none ring-1 ring-inset ring-transparent transition focus:bg-neutral-200 focus:text-neutral-950 focus:ring-transparent"
               />
             </label>
-            <span className="text-sm text-center font-medium text-neutral-500">to</span>
+            <span className="text-sm text-center font-medium text-neutral-500">မှ</span>
             <label className="block flex-1">
               <input
                 type="date"

@@ -9,19 +9,19 @@ import {
 } from "./formStyles";
 
 const useLogTypeOptions = [
-  { value: "in", label: "In" },
-  { value: "out", label: "Out" },
+  { value: "in", label: "အဝင်" },
+  { value: "out", label: "အထွက်" },
 ];
 
 const useLogLocationOptions = [
-  { value: "sittwe", label: "Sittwe" },
-  { value: "yangon", label: "Yangon" },
+  { value: "sittwe", label: "စစ်တွေ" },
+  { value: "yangon", label: "ရန်ကုန်" },
 ];
 
 function getDefaultValues() {
   return {
     amount: "",
-    type: "in",
+    type: "out",
     location: "sittwe",
     note: "",
   };
@@ -73,7 +73,7 @@ function UseLogForm({ onSubmit }) {
       <form className="space-y-4" onSubmit={handleSubmit}>
         <label className="block">
           <span className={formLabelClass}>
-            Amount
+            ငွေပမာဏ
           </span>
           <input
             required
@@ -89,7 +89,7 @@ function UseLogForm({ onSubmit }) {
 
         <label className="block">
           <span className={formLabelClass}>
-            Type
+            ငွေဝင်/ထွက် အမျိုးအစား
           </span>
           <CustomSelect
             name="type"
@@ -104,7 +104,7 @@ function UseLogForm({ onSubmit }) {
 
         <label className="block">
           <span className={formLabelClass}>
-            Location
+            နေရာ
           </span>
           <CustomSelect
             name="location"
@@ -119,7 +119,7 @@ function UseLogForm({ onSubmit }) {
 
         <label className="block">
           <span className={formLabelClass}>
-            Note
+            မှတ်ချက်
           </span>
           <textarea
             rows={3}
@@ -142,7 +142,7 @@ function UseLogForm({ onSubmit }) {
           ) : showSavedState ? (
             "Saved"
           ) : (
-            "Add use log"
+            "အသုံးစရိတ်ထည့်ပါ"
           )}
         </button>
       </form>

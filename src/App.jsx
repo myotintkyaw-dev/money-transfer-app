@@ -9,6 +9,7 @@ const AuthPage = lazy(() => import("./pages/AuthPage"));
 const DashboardPage = lazy(() => import("./pages/DashboardPage"));
 const AddLogsPage = lazy(() => import("./pages/AddLogsPage"));
 const UserLogsPage = lazy(() => import("./pages/UserLogsPage"));
+const InitialAmountPage = lazy(() => import("./pages/InitialAmountPage"));
 const AddLogsRecordsPage = lazy(() => import("./pages/AddLogsRecordsPage"));
 const UseLogsRecordsPage = lazy(() => import("./pages/UseLogsRecordsPage"));
 
@@ -54,6 +55,7 @@ function App() {
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="add-logs" element={<AddLogsPage />} />
           <Route path="userlogs" element={<UserLogsPage />} />
+          <Route path="initial-amount" element={<InitialAmountPage />} />
           <Route path="records" element={<Navigate to="/records/add-logs" replace />} />
           <Route path="records/add-logs" element={<AddLogsRecordsPage />} />
           <Route path="records/use-logs" element={<UseLogsRecordsPage />} />

@@ -52,7 +52,7 @@ function AuthForm() {
 
   return (
     <div className="mx-auto w-full max-w-md">
-      <div className="mb-6 flex rounded-md border border-neutral-200 bg-neutral-100 p-1">
+      <div className="mb-6 flex text-sm font-medium rounded-md border border-neutral-200 bg-neutral-100 p-1">
         {["login", "register"].map((item) => (
           <button
             key={item}
@@ -62,19 +62,18 @@ function AuthForm() {
               setError("");
             }}
             className={`flex-1 rounded-md px-4 py-2 text-sm font-medium capitalize transition ${mode === item
-                ? "bg-white text-neutral-950 shadow-[0_1px_3px_rgba(0,0,0,0.08)]"
-                : "text-neutral-500"
+              ? "bg-white text-neutral-950 shadow-[0_1px_3px_rgba(0,0,0,0.08)]"
+              : "text-neutral-500"
               }`}
           >
-            {item}
+            {item === "login" ? "ဝင်ရန်" : "လျှောက်ရန်"}
           </button>
         ))}
       </div>
-
       <form className="space-y-4" onSubmit={handleSubmit}>
         <label className="block">
           <span className="mb-2 block text-sm font-semibold text-neutral-500">
-            Email
+            အီးမေးလ်
           </span>
           <input
             required
@@ -82,14 +81,14 @@ function AuthForm() {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            placeholder="name@example.com"
+            placeholder="name@mail.com"
             className={`${formInputClass} ring-0`}
           />
         </label>
 
         <label className="block">
           <span className={formLabelClass}>
-            Password
+            စကားဝှက်
           </span>
           <input
             required
@@ -98,7 +97,7 @@ function AuthForm() {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            placeholder="At least 6 characters"
+            placeholder="စာလုံးရေ ၆ လုံးအနည်းဆုံးထည့်ပါ"
             className={`${formInputClass} ring-0`}
           />
         </label>
@@ -119,9 +118,9 @@ function AuthForm() {
               <LoadingSpinner />
             </span>
           ) : isLogin ? (
-            "Log in"
+            "အကောင့်ဝင်ပါ"
           ) : (
-            "Create account"
+            "အကောင့်လျှောက်ပါ"
           )}
         </button>
       </form>
