@@ -4,6 +4,7 @@ import AppShell from "./components/AppShell";
 import LoadingSpinner from "./components/LoadingSpinner";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useAuth } from "./context/AuthContext";
+import { Analytics } from "@vercel/analytics/next";
 
 const AuthPage = lazy(() => import("./pages/AuthPage"));
 const DashboardPage = lazy(() => import("./pages/DashboardPage"));
@@ -23,6 +24,7 @@ function LoadingScreen({ message }) {
         />
         <span>{message}</span>
       </div>
+      <Analytics />
     </div>
   );
 }
