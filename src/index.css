@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+:root {
+  color: #111111;
+  background: #ffffff;
+  font-family: "Inter", "Noto Sans Myanmar", "Pyidaungsu", sans-serif;
+}
+
+html {
+  font-family: "Inter", "Noto Sans Myanmar", "Pyidaungsu", sans-serif;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  color: #111111;
+  background: #ffffff;
+  font-family: "Inter", "Noto Sans Myanmar", "Pyidaungsu", sans-serif;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+:lang(my),
+[lang="my"] {
+  font-family: "Noto Sans Myanmar", "Pyidaungsu", "Padauk", "Inter", sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+input,
+select,
+button,
+textarea {
+  font: inherit;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}

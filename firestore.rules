@@ -1,0 +1,149 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function hasAuditFieldsOnCreate(data) {
+      return data.createdAt == request.time
+        && data.updatedAt == request.time;
+    }
+
+    function hasAuditFieldsOnUpdate() {
+      return request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.updatedAt == request.time;
+    }
+
+    match /transactions/{transactionId} {
+      function hasAllowedTransactionKeys(data) {
+        return data.keys().hasOnly([
+          'amount',
+          'commission',
+          'createdAt',
+          'date',
+          'description',
+          'note',
+          'receiver',
+          'sender',
+          'source',
+          'type',
+          'updatedAt',
+          'useLogId',
+          'userId'
+        ]);
+      }
+
+      function isValidTransaction(data) {
+        return hasAllowedTransactionKeys(data)
+          && data.amount is number
+          && data.amount > 0
+          && data.type in ['income', 'expense']
+          && data.description is string
+          && (!('commission' in data) || (data.commission is number && data.commission >= 0))
+          && (!('sender' in data) || data.sender is string)
+          && (!('receiver' in data) || data.receiver is string)
+          && (!('note' in data) || data.note is string)
+          && (!('source' in data) || data.source in ['useLog'])
+          && (!('useLogId' in data) || data.useLogId is string)
+          && data.date is timestamp
+          && data.userId is string
+          && data.createdAt is timestamp
+          && data.updatedAt is timestamp;
+      }
+
+      allow read: if isOwner(resource.data.userId);
+
+      allow create: if isOwner(request.resource.data.userId)
+        && hasAuditFieldsOnCreate(request.resource.data)
+        && isValidTransaction(request.resource.data);
+
+      allow update, delete: if false;
+    }
+
+    match /initialAmounts/{initialAmountId} {
+      function hasAllowedInitialAmountKeys(data) {
+        return data.keys().hasOnly([
+          'createdAt',
+          'date',
+          'initialAmount',
+          'sittweAmount',
+          'updatedAt',
+          'userId',
+          'yangonAmount'
+        ]);
+      }
+
+      function isValidInitialAmount(data) {
+        return hasAllowedInitialAmountKeys(data)
+          && data.sittweAmount is number
+          && data.sittweAmount >= 0
+          && data.yangonAmount is number
+          && data.yangonAmount >= 0
+          && data.initialAmount is number
+          && data.initialAmount == data.sittweAmount + data.yangonAmount
+          && data.date is timestamp
+          && data.userId is string
+          && data.createdAt is timestamp
+          && data.updatedAt is timestamp;
+      }
+
+      allow read: if isOwner(resource.data.userId);
+
+      allow create: if isOwner(request.resource.data.userId)
+        && hasAuditFieldsOnCreate(request.resource.data)
+        && isValidInitialAmount(request.resource.data);
+
+      allow update: if isOwner(resource.data.userId)
+        && request.resource.data.userId == resource.data.userId
+        && request.resource.data.date == resource.data.date
+        && hasAuditFieldsOnUpdate()
+        && isValidInitialAmount(request.resource.data);
+
+      allow delete: if false;
+    }
+
+    match /useLogs/{useLogId} {
+      function hasAllowedUseLogKeys(data) {
+        return data.keys().hasOnly([
+          'amount',
+          'createdAt',
+          'date',
+          'location',
+          'note',
+          'transactionId',
+          'type',
+          'updatedAt',
+          'userId'
+        ]);
+      }
+
+      function isValidUseLog(data) {
+        return hasAllowedUseLogKeys(data)
+          && data.amount is number
+          && data.amount > 0
+          && data.type in ['in', 'out']
+          && (!('location' in data) || data.location in ['sittwe', 'yangon'])
+          && (!('note' in data) || data.note is string)
+          && (!('transactionId' in data) || data.transactionId is string)
+          && data.date is timestamp
+          && data.userId is string
+          && data.createdAt is timestamp
+          && data.updatedAt is timestamp;
+      }
+
+      allow read: if isOwner(resource.data.userId);
+
+      allow create: if isOwner(request.resource.data.userId)
+        && hasAuditFieldsOnCreate(request.resource.data)
+        && isValidUseLog(request.resource.data);
+
+      allow update, delete: if false;
+    }
+  }
+}
