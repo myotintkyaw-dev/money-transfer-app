@@ -4,7 +4,7 @@ import AppShell from "./components/AppShell";
 import LoadingSpinner from "./components/LoadingSpinner";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useAuth } from "./context/AuthContext";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
 
 const AuthPage = lazy(() => import("./pages/AuthPage"));
 const DashboardPage = lazy(() => import("./pages/DashboardPage"));
@@ -23,8 +23,8 @@ function LoadingScreen({ message }) {
           colorClass="border-neutral-300 border-t-neutral-950"
         />
         <span>{message}</span>
+        <Analytics />
       </div>
-      <Analytics />
     </div>
   );
 }
