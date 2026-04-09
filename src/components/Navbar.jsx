@@ -3,7 +3,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const navigationItems = [
-  { to: "/dashboard", label: "ပင်မ" },
+  { to: "/dashboard", label: "ပင်မစာမျက်နှာ" },
   { to: "/add-logs", label: "ငွေစာရင်းထည့်ရန်" },
   { to: "/userlogs", label: "အသုံးစရိတ်ထည့်ရန်" },
 ];
@@ -21,7 +21,7 @@ const recordsItems = [
 function getNavItemClass(isActive) {
   return `inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-medium transition ${isActive
     ? "bg-neutral-950 text-white"
-    : "bg-neutral-200 text-neutral-700 hover:bg-neutral-300 hover:text-neutral-950 gap-2"
+    : "text-neutral-700 hover:bg-neutral-200 hover:text-neutral-950 gap-2"
     }`;
 }
 
@@ -51,10 +51,10 @@ function Navbar() {
   }, []);
 
   return (
-    <nav className="sticky top-0 z-10 w-full bg-neutral-100 py-4 transition-[padding,background-color] duration-200">
+    <nav className="sticky top-0 z-10 w-full bg-neutral-100 py-5 transition-[padding,background-color] duration-200">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-2 px-4 sm:px-6 lg:px-8">
         <div className="min-h-10 flex-0" />
-        <div className="flex flex-wrap items-center justify-center gap-2">
+        <div className="flex flex-wrap items-center justify-end gap-2">
           {navigationItems.map((item) => (
             <NavLink
               key={item.to}

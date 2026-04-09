@@ -78,11 +78,11 @@ function DashboardPage() {
       value: formatCurrency(transactionMetrics.commissionAmount),
     },
     {
-      title: "ငွေလွှဲ/ထုတ် အကြိမ်ရေ",
+      title: "ငွေလွှဲ/ထုတ်ကြိမ်ရေ",
       value: String(transactionMetrics.timesCount),
     },
     {
-      title: "ငွေလွှဲ/ထုတ် ပမာဏ",
+      title: "ငွေလွှဲ/ထုတ်ပမာဏ",
       value: formatCurrency(transactionMetrics.transactionAmount),
     },
     {
@@ -90,15 +90,15 @@ function DashboardPage() {
       value: formatCurrency(usedAmount),
     },
     {
-      title: "စစ်တွေ ငွေပမာဏ",
+      title: "စစ်တွေငွေပမာဏ",
       value: formatCurrency(initialAmountSummary.sittweAmount),
     },
     {
-      title: "ရန်ကုန် ငွေပမာဏ",
+      title: "ရန်ကုန်ငွေပမာဏ",
       value: formatCurrency(initialAmountSummary.yangonAmount),
     },
     {
-      title: "အရင်းငွေ ပမာဏ",
+      title: "အရင်းငွေပမာဏ",
       value: formatCurrency(initialAmountSummary.initialAmount),
       className: "col-span-2 xl:col-span-2",
     },
