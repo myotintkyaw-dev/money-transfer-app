@@ -63,6 +63,8 @@ function UseLogForm({ onSubmit }) {
       successTimeoutRef.current = window.setTimeout(() => {
         setShowSavedState(false);
       }, 2000);
+    } catch {
+      // The page displays the mutation error; preserve the user's input.
     } finally {
       setSubmitting(false);
     }

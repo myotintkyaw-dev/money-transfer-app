@@ -1,7 +1,7 @@
 import {
-  addDoc,
   collection,
   doc,
+  setDoc,
   Timestamp,
   updateDoc,
 } from "firebase/firestore";
@@ -74,8 +74,8 @@ export function subscribeToInitialAmounts(options, onData, onError) {
 }
 
 export function createInitialAmount(payload) {
-  return addDoc(
-    initialAmountsCollection,
+  return setDoc(
+    doc(initialAmountsCollection, payload.userId),
     withCreateAuditFields(normalizeInitialAmountPayload(payload)),
   );
 }

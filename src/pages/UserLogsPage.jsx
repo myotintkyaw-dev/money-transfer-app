@@ -16,10 +16,13 @@ function UserLogsPage() {
       date: formatDateInput(new Date()),
     };
 
-    void createUseLog(payload).catch((error) => {
+    try {
+      await createUseLog(payload);
+    } catch (error) {
       console.error("Use log save failed:", error);
       setActionError(getUseLogMutationErrorMessage(error));
-    });
+      throw error;
+    }
   };
 
   return (

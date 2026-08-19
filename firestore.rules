@@ -57,13 +57,39 @@ service cloud.firestore {
           && data.updatedAt is timestamp;
       }
 
+      function hasLinkedUseLog(data, transactionId) {
+        return !('source' in data) || data.source != 'useLog'
+          || (
+            'useLogId' in data
+            && existsAfter(/databases/$(database)/documents/useLogs/$(data.useLogId))
+            && getAfter(/databases/$(database)/documents/useLogs/$(data.useLogId)).data.userId == data.userId
+            && getAfter(/databases/$(database)/documents/useLogs/$(data.useLogId)).data.transactionId == transactionId
+            && getAfter(/databases/$(database)/documents/useLogs/$(data.useLogId)).data.amount == data.amount
+            && getAfter(/databases/$(database)/documents/useLogs/$(data.useLogId)).data.date == data.date
+            && (
+              (data.type == 'income'
+                && getAfter(/databases/$(database)/documents/useLogs/$(data.useLogId)).data.type == 'in')
+              || (data.type == 'expense'
+                && getAfter(/databases/$(database)/documents/useLogs/$(data.useLogId)).data.type == 'out')
+            )
+          );
+      }
+
       allow read: if isOwner(resource.data.userId);
 
       allow create: if isOwner(request.resource.data.userId)
         && hasAuditFieldsOnCreate(request.resource.data)
+        && isValidTransaction(request.resource.data)
+        && hasLinkedUseLog(request.resource.data, transactionId);
+
+      allow update: if isOwner(resource.data.userId)
+        && request.resource.data.userId == resource.data.userId
+        && !('source' in resource.data)
+        && !('source' in request.resource.data)
+        && hasAuditFieldsOnUpdate()
         && isValidTransaction(request.resource.data);
 
-      allow update, delete: if false;
+      allow delete: if isOwner(resource.data.userId);
     }
 
     match /initialAmounts/{initialAmountId} {
@@ -143,7 +169,8 @@ service cloud.firestore {
         && hasAuditFieldsOnCreate(request.resource.data)
         && isValidUseLog(request.resource.data);
 
-      allow update, delete: if false;
+      allow update: if false;
+      allow delete: if isOwner(resource.data.userId);
     }
   }
 }

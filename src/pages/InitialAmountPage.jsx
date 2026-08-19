@@ -14,9 +14,6 @@ function InitialAmountPage() {
         editInitialAmount,
     } = useInitialAmounts({
         userId: user?.uid ?? null,
-        filter: "last30",
-        customStartDate: "",
-        customEndDate: "",
     });
     const currentInitialAmount = initialAmounts[0] || null;
 
@@ -40,6 +37,7 @@ function InitialAmountPage() {
         } catch (error) {
             console.error("Initial amount save failed:", error);
             setInitialAmountError(getInitialAmountMutationErrorMessage(error));
+            throw error;
         }
     };
 

@@ -27,7 +27,7 @@ function getTimestampValue(timestamp) {
   return 0;
 }
 
-function RecordTable({ transactions, loading }) {
+function RecordTable({ transactions, loading, onEdit }) {
   const addLogTransactions = useMemo(
     () => transactions.filter((transaction) => transaction.source !== "useLog"),
     [transactions],
@@ -71,7 +71,7 @@ function RecordTable({ transactions, loading }) {
         </div>
       ) : (
         <div className="overflow-x-auto rounded-md border border-neutral-200">
-          <table className="min-w-280 table-fixed divide-y divide-neutral-200 bg-white text-sm">
+          <table className="min-w-300 table-fixed divide-y divide-neutral-200 bg-white text-sm">
             <thead className="bg-neutral-50 text-left text-neutral-500">
               <tr>
                 <th className="w-10 px-4 py-3 font-semibold">ရက်</th>
@@ -81,6 +81,7 @@ function RecordTable({ transactions, loading }) {
                 <th className="w-30 px-4 py-3 font-semibold">ပို့သူ</th>
                 <th className="w-30 px-4 py-3 font-semibold">လက်ခံသူ</th>
                 <th className="w-35 px-4 py-3 font-semibold">မှတ်ချက်</th>
+                <th className="w-20 px-4 py-3 font-semibold">လုပ်ဆောင်ချက်</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-neutral-100">
@@ -110,6 +111,15 @@ function RecordTable({ transactions, loading }) {
                   <td className="px-4 py-4">{transaction.receiver || "-"}</td>
                   <td className="px-4 py-4">
                     {transaction.note || "-"}
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap">
+                    <button
+                      type="button"
+                      onClick={() => onEdit(transaction)}
+                      className="rounded-4xl border border-neutral-300 px-3 ms-5 py-1.5 text-xs font-semibold text-neutral-700 transition hover:border-neutral-950 hover:bg-neutral-950 hover:text-white focus:outline-none focus:ring-2 focus:ring-neutral-400"
+                    >
+                      Edit
+                    </button>
                   </td>
                 </tr>
               ))}

@@ -36,6 +36,7 @@ function AddLogsPage() {
     } catch (error) {
       console.error("Transaction save failed:", error);
       setActionError(getTransactionMutationErrorMessage(error, "save"));
+      throw error;
     }
   };
 

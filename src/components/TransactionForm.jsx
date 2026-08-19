@@ -84,6 +84,8 @@ function TransactionForm({ onSubmit, editingTransaction, onCancel }) {
     try {
       await onSubmit(formData);
       setFormData(getDefaultValues());
+    } catch {
+      // The page displays the mutation error; preserve the user's input.
     } finally {
       setSubmitting(false);
     }
@@ -201,7 +203,7 @@ function TransactionForm({ onSubmit, editingTransaction, onCancel }) {
               onClick={onCancel}
               className={`flex-1 ${secondaryButtonClass}`}
             >
-              Cancel
+              ပယ်ဖျက်မည်
             </button>
           ) : null}
           <button
@@ -214,7 +216,7 @@ function TransactionForm({ onSubmit, editingTransaction, onCancel }) {
                 <LoadingSpinner />
               </span>
             ) : editingTransaction ? (
-              "Update transaction"
+              "အသစ်ပြင်မည်"
             ) : (
               "ငွေစာရင်းထည့်ပါ"
             )}

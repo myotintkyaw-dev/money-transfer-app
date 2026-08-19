@@ -44,6 +44,8 @@ function InitialAmountForm({ onSubmit, initialAmount }) {
       if (!initialAmount) {
         setFormData(getDefaultValues());
       }
+    } catch {
+      // The page displays the mutation error; preserve the user's input.
     } finally {
       setSubmitting(false);
     }
